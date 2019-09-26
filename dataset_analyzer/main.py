@@ -1,9 +1,12 @@
 import Tkinter as tk
 import analysis_page
+import csv
 
 # Set the window size here
 HEIGHT = 600
 WIDTH = 600
+
+data_set = []
 
 
 class Application (tk.Tk):
@@ -24,14 +27,14 @@ class Application (tk.Tk):
 class StartPage(tk.Frame):
     # Reads a csv file and stores it in a dictionary list
     def read_csv(self, _file_path):
-        # TODO: Implement read_csv() function
-        self.data_set1 = ["Placeholder"]
-        self.data_set2 = ["Placeholder"]
+        global data_set
+        for path in _file_path:
+            with open(path) as f:
+                reader = csv.reader(f, skipinitialspace=True)
+                header = next(reader)
+                data_set.append([dict(zip(header, map(str, row))) for row in reader])
 
     def __init__(self, master):
-        self.data_set1 = []
-        self.data_set2 = []
-
         tk.Frame.__init__(self, master)
 
         canvas = tk.Canvas(self, height=HEIGHT, width=WIDTH)
@@ -51,14 +54,11 @@ class StartPage(tk.Frame):
 
         path2_label = tk.Label(frame, text="Data set 2:", font=40)
         path2_label.place(relx=0, rely=0.1)
-
         path2_entry = tk.Entry(frame)
         path2_entry.place(relx=0.2, rely=0.11, relwidth=0.5)
 
-        path_array = [path1_entry.get(), path2_entry.get()]
-
         confirm_button = tk.Button(frame, text="Confirm",
-                                   command=lambda: [self.read_csv(path_array),
+                                   command=lambda: [self.read_csv([path1_entry.get(), path2_entry.get()]),
                                                     master.switch_frame(analysis_page.AnalysisPage)])
 
         confirm_button.place(relx=0, rely=0.175, relwidth=0.2)
