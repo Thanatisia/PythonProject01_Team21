@@ -1,12 +1,7 @@
 import Tkinter as tk
 import analysis_page
 import csv
-
-# Set the window size here
-HEIGHT = 600
-WIDTH = 600
-
-data_set = []
+import settings
 
 
 class Application (tk.Tk):
@@ -27,17 +22,16 @@ class Application (tk.Tk):
 class StartPage(tk.Frame):
     # Reads a csv file and stores it in a dictionary list
     def read_csv(self, _file_path):
-        global data_set
         for path in _file_path:
             with open(path) as f:
                 reader = csv.reader(f, skipinitialspace=True)
                 header = next(reader)
-                data_set.append([dict(zip(header, map(str, row))) for row in reader])
+                settings.data_set.append([dict(zip(header, map(str, row))) for row in reader])
 
     def __init__(self, master):
         tk.Frame.__init__(self, master)
 
-        canvas = tk.Canvas(self, height=HEIGHT, width=WIDTH)
+        canvas = tk.Canvas(self, height=settings.HEIGHT, width=settings.WIDTH)
         canvas.pack()
 
         frame = tk.Frame(canvas, bd=5)
@@ -65,6 +59,7 @@ class StartPage(tk.Frame):
 
 
 if __name__ == "__main__":
+    settings.init()
     app = Application()
-    app.minsize(HEIGHT, WIDTH)
+    app.minsize(settings.HEIGHT, settings.WIDTH)
     app.mainloop()
