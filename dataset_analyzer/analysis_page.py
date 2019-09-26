@@ -1,12 +1,13 @@
 import Tkinter as tk
 import main
+import settings
 
 
 class AnalysisPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
 
-        canvas = tk.Canvas(self, height=main.HEIGHT, width=main.WIDTH)
+        canvas = tk.Canvas(self, height=settings.HEIGHT, width=settings.WIDTH)
         canvas.pack()
 
         frame = tk.Frame(canvas, bd=5)
