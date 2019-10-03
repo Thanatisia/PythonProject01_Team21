@@ -51,8 +51,12 @@ class StartPage(tk.Frame):
         path2_entry = tk.Entry(frame)
         path2_entry.place(relx=0.2, rely=0.11, relwidth=0.5)
 
+        # confirm_button = tk.Button(frame, text="Confirm",
+        #                            command=lambda: [self.read_csv([path1_entry.get(), path2_entry.get()]),
+        #                                             master.switch_frame(analysis_page.AnalysisPage)])
+
         confirm_button = tk.Button(frame, text="Confirm",
-                                   command=lambda: [self.read_csv([path1_entry.get(), path2_entry.get()]),
+                                   command=lambda: [self.read_csv([settings.path1, settings.path2]),
                                                     master.switch_frame(analysis_page.AnalysisPage)])
 
         confirm_button.place(relx=0, rely=0.175, relwidth=0.2)

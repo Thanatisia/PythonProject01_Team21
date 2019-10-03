@@ -7,6 +7,8 @@ class AnalysisPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
 
+        print settings.data_set[0]
+
         canvas = tk.Canvas(self, height=settings.HEIGHT, width=settings.WIDTH)
         canvas.pack()
 
