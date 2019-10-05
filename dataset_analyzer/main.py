@@ -2,6 +2,7 @@ import Tkinter as tk
 import analysis_page
 import csv
 import settings
+import pprint
 
 
 class Application (tk.Tk):
@@ -22,6 +23,7 @@ class Application (tk.Tk):
 class StartPage(tk.Frame):
     # Reads a csv file and stores it in a dictionary list
     def read_csv(self, _file_path):
+        settings.data_set = []
         for path in _file_path:
             with open(path) as f:
                 reader = csv.reader(f, skipinitialspace=True)
@@ -51,13 +53,6 @@ class StartPage(tk.Frame):
         path2_entry = tk.Entry(frame)
         path2_entry.place(relx=0.2, rely=0.11, relwidth=0.5)
 
-        # !!!! DO NOT REMOVE !!!!
-        # confirm_button = tk.Button(frame, text="Confirm",
-        #                            command=lambda: [self.read_csv([path1_entry.get(), path2_entry.get()]),
-        #                                             master.switch_frame(analysis_page.AnalysisPage)])
-        # !!!! DO NOT REMOVE !!!!
-
-        # Temporarily use default file path for debugging purposes
         confirm_button = tk.Button(frame, text="Confirm",
                                    command=lambda: [self.read_csv([settings.path1, settings.path2]),
                                                     master.switch_frame(analysis_page.AnalysisPage)])
