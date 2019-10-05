@@ -7,5 +7,5 @@ def init():
 
     data_set = []
 
-    path1 = "C:\My Files\Work\Temp Projects\Python Project 01\dataset_analyzer\data\procurement-truncated.csv"
-    path2 = "C:\My Files\Work\Temp Projects\Python Project 01\dataset_analyzer\data\contractors-truncated.csv"
+    path1 = "data\procurement-truncated.csv"
+    path2 = "data\contractors-truncated.csv"
